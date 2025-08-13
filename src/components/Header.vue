@@ -1,7 +1,19 @@
 <template>
-    <header>
+    <header class="bg-slate-800">
         <div class="mx-auto container px-5 py-4">
-            <div>
+            <div class="flex justify-between items-center">
+                <div>
+                    <RouterLink :to="{ name: 'inicio'}">
+                        <img class="w-32" src="/img/logo.svg" alt="Logo Bebidas Vue">
+                    </RouterLink>
+                </div>
+
+                <nav class="flex gap-4">
+                    <RouterLink class="text-white font-bold hover:text-orange-400 transition-colors" active-class="text-orange-500"
+                        :to="{ name: 'inicio'}">Inicio</RouterLink>
+                    <RouterLink class="text-white font-bold hover:text-orange-400 transition-colors" active-class="text-orange-500"
+                        :to="{ name: 'favoritos'}">Favoritos</RouterLink>
+                </nav>
             </div>
 
             <form class="md:w-1/2 2xl:w-1/3 bg-orange-400 my-32 p-10 rounded-lg shadow space-y-6">
