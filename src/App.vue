@@ -1,3 +1,7 @@
 <template>
-    <h1>Inicio del proyecto</h1>
+    <Header/>
 </template>
+
+<script setup>
+    import Header from './components/Header.vue';
+</script>
