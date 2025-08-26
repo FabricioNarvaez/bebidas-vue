@@ -48,8 +48,12 @@
 <script setup>
     import { computed } from 'vue';
     import { useRoute } from 'vue-router';
+    import { useBebidasStore } from '../stores/bebidas';
+    
 
     const route = useRoute();
+    const bebidas = useBebidasStore();
+    
     const paginaInicio = computed(() => route.name === 'inicio');
 </script>
 
