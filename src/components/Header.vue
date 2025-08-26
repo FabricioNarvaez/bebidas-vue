@@ -22,7 +22,7 @@
                         for="ingrediente">
                         Nombre o Ingredientes
                     </label>
-                    <input class="p-3 w-full rounded-lg focus:outline-none"
+                    <input class="p-3 w-full rounded-lg focus:outline-none" v-model="store.busqueda.nombre"
                         id="ingrediente" type="text" placeholder="Nombre o Ingrediente: ej. Tequila, Vodka, etc.">
                 </div>
 
@@ -31,10 +31,10 @@
                         for="caletegoria">
                         Categoría
                     </label>
-                    <select class="p-3 w-full rounded-lg focus:outline-none"
+                    <select class="p-3 w-full rounded-lg focus:outline-none" v-model="store.busqueda.categoria"
                         id="caletegoria">
                         <option value="">-- Seleccione --</option>
-                        <option v-for="categoria in bebidas.categorias" :key="categoria.strCategory" :value="categoria.strCategory">{{ categoria.strCategory }}</option>
+                        <option v-for="categoria in store.categorias" :key="categoria.strCategory" :value="categoria.strCategory">{{ categoria.strCategory }}</option>
                     </select>
                 </div>
 
@@ -53,7 +53,7 @@
     
 
     const route = useRoute();
-    const bebidas = useBebidasStore();
+    const store = useBebidasStore();
     
     const paginaInicio = computed(() => route.name === 'inicio');
 </script>
