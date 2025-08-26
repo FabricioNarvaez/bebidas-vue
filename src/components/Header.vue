@@ -34,6 +34,7 @@
                     <select class="p-3 w-full rounded-lg focus:outline-none"
                         id="caletegoria">
                         <option value="">-- Seleccione --</option>
+                        <option v-for="categoria in bebidas.categorias" :key="categoria.strCategory" :value="categoria.strCategory">{{ categoria.strCategory }}</option>
                     </select>
                 </div>
 
