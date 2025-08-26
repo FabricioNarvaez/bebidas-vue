@@ -7,15 +7,17 @@ export const useBebidasStore = defineStore('bebidas', () =>{
     const busqueda = reactive({
         nombre: '', 
         categoria: ''
-    })
+    });
+    const recetas = ref([]);
 
     onMounted( async () => {
         const {data: { drinks }} = await APIService.obtenerCategorias();
         categorias.value = drinks;
     })
 
-    function obtenerRecetas () {
-        console.log('obteniendo recetas...');
+    async function obtenerRecetas () {
+        const {data: { drinks }} = await APIService.obtenerRecetas(busqueda);
+        recetas.value = drinks;
     }
 
     return {
