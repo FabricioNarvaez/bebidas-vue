@@ -1,6 +1,8 @@
 <template>
     <Header/>
-    <RouterView/>
+    <main class="container mx-auto mt-10">
+        <RouterView />
+    </main>
 </template>
 
 <script setup>
