@@ -6,5 +6,8 @@ export default {
     }, 
     obtenerRecetas(busqueda){
         return api.get(`/filter.php?c=${busqueda.categoria}&i=${busqueda.nombre}`);
+    },
+    obtenerRecetaId(id){
+        return api.get(`/lookup.php?i=${id}`);
     }
 }

@@ -8,7 +8,7 @@
         <div class="p-5">
             <h2 class="text-2xl truncate font-bold">{{ receta.strDrink }}</h2>
             <button class="bg-orange-400 hover:bg-orange-500 mt-5 w-full p-3 font-bold text-white text-lg"
-                type="button">
+                type="button" @click="bebidasStore.seleccionarBebida(receta.idDrink)">
                 Ver Receta
             </button>
         </div>
@@ -16,6 +16,10 @@
 </template>
 
 <script setup>
+    import { useBebidasStore } from '../stores/bebidas';
+
+    const bebidasStore = useBebidasStore();
+
     defineProps({
         receta: {
             type: Object,
