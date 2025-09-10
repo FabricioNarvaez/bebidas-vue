@@ -31,7 +31,13 @@
                             class="relative transform overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-2xl sm:p-6"
                         >
                             <div>
-                                <div class="mt-3"></div>
+                                <div class="mt-3">
+                                    <DialogTitle as="h3" class="text-gray-900 text-4xl font-bold my-5">
+                                        {{ bebidasStore.receta.strDrink }}
+                                    </DialogTitle>
+
+                                    <img :src="bebidasStore.receta.strDrinkThumb" :alt="`Imagen de ${bebidasStore.receta.strDrink}`" class="w-full lg:w-1/2 mx-auto rounded-lg"/>
+                                </div>
                             </div>
                             <div class="mt-5 sm:mt-6 flex justify-between gap-4">
                                 <button class="w-full rounded bg-gray-600 p-3 font-bold uppercase text-white shadow hover:bg-gray-500"
@@ -50,7 +56,9 @@
 <script setup>
     import { Dialog, DialogPanel, DialogTitle, TransitionChild, TransitionRoot} from "@headlessui/vue";
     import { useModalStore } from "../stores/modal";
+    import { useBebidasStore } from "../stores/bebidas";
 
+    const bebidasStore = useBebidasStore();
     const modalStore = useModalStore();
 
 </script>
