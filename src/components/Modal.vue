@@ -36,7 +36,20 @@
                                         {{ bebidasStore.receta.strDrink }}
                                     </DialogTitle>
 
-                                    <img :src="bebidasStore.receta.strDrinkThumb" :alt="`Imagen de ${bebidasStore.receta.strDrink}`" class="w-full lg:w-1/2 mx-auto rounded-lg"/>
+                                    <img class="w-96 lg:w-1/2 mx-auto rounded-lg"
+                                    :src="bebidasStore.receta.strDrinkThumb" :alt="`Imagen de ${bebidasStore.receta.strDrink}`" />
+                                
+                                    <DialogTitle as="h3" class="text-gray-900 text-4xl font-bold my-5">
+                                        Ingredientes y cantidades
+                                    </DialogTitle>
+
+                                    <div class="text-gray-500" v-html="formatearIngredientes()"></div>
+
+                                    <DialogTitle as="h3" class="text-gray-900 text-4xl font-bold my-5">
+                                        Instrucciones
+                                    </DialogTitle>
+
+                                    <p class="text-lg text-gray-500">{{ bebidasStore.receta.strInstructionsES || bebidasStore.receta.strInstructions }}</p>
                                 </div>
                             </div>
                             <div class="mt-5 sm:mt-6 flex justify-between gap-4">
@@ -61,4 +74,23 @@
     const bebidasStore = useBebidasStore();
     const modalStore = useModalStore();
 
+    const formatearIngredientes = () =>{
+        const ingredientesDiv = document.createElement('div');
+        for(let i = 1; i <= 15; i++){
+            if(bebidasStore.receta[`strIngredient${i}`]){
+                const ingrediente = bebidasStore.receta[`strIngredient${i}`];
+                const cantidad = bebidasStore.receta[`strMeasure${i}`];
+
+                const ingredienteCantidad = document.createElement('p');
+                ingredienteCantidad.classList.add('text-lg');
+                ingredienteCantidad.textContent = `${ingrediente} - ${cantidad ?? ''}`;
+
+                ingredientesDiv.appendChild(ingredienteCantidad);
+            }else{
+                break;
+            }
+        }
+
+        return ingredientesDiv.innerHTML;
+    }
 </script>
