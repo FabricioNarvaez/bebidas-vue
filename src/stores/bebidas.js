@@ -1,6 +1,7 @@
 import { ref, reactive, onMounted } from "vue";
 import { defineStore } from "pinia";
 import APIService from "../services/APIService";
+import { useModalStore } from "./modal";
 
 export const useBebidasStore = defineStore('bebidas', () =>{
     const categorias = ref([]);
@@ -9,6 +10,7 @@ export const useBebidasStore = defineStore('bebidas', () =>{
         categoria: ''
     });
     const recetas = ref([]);
+    const modalStore = useModalStore();
 
     onMounted( async () => {
         const {data: { drinks }} = await APIService.obtenerCategorias();
@@ -22,6 +24,7 @@ export const useBebidasStore = defineStore('bebidas', () =>{
 
     async function seleccionarBebida(id){
         const {data: { drinks }} = await APIService.obtenerRecetaId(id);
+        modalStore.toggleModal();
         console.log(drinks[0]);
     }
 

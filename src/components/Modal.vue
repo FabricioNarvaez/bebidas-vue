@@ -1,5 +1,5 @@
 <template>
-    <TransitionRoot as="template" :show="true">
+    <TransitionRoot as="template" :show="modalStore.isModalOpen">
         <Dialog as="div" class="relative z-10">
             <TransitionChild
                 as="template"
@@ -46,4 +46,8 @@
 
 <script setup>
     import { Dialog, DialogPanel, DialogTitle, TransitionChild, TransitionRoot} from "@headlessui/vue";
+    import { useModalStore } from "../stores/modal";
+
+    const modalStore = useModalStore();
+
 </script>
