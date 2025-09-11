@@ -8,10 +8,10 @@
                     </RouterLink>
                 </div>
 
-                <nav class="flex gap-4">
-                    <RouterLink class="text-white font-bold hover:text-orange-400 transition-colors" active-class="text-orange-500"
+                <nav class="flex gap-4 text-white">
+                    <RouterLink class="font-bold hover:text-orange-400 transition-colors" active-class="text-orange-500"
                         :to="{ name: 'inicio'}">Inicio</RouterLink>
-                    <RouterLink class="text-white font-bold hover:text-orange-400 transition-colors" active-class="text-orange-500"
+                    <RouterLink class="font-bold hover:text-orange-400 transition-colors" active-class="text-orange-500"
                         :to="{ name: 'favoritos'}">Favoritos</RouterLink>
                 </nav>
             </div>
