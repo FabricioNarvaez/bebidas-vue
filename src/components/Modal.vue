@@ -57,6 +57,10 @@
                                     @click="modalStore.toggleModal()" type="button">
                                     Cerrar
                                 </button>
+                                <button class="w-full rounded bg-orange-600 p-3 font-bold uppercase text-white shadow hover:bg-orange-500"
+                                    @click="favoritosStore.handleFavorito" type="button">
+                                    Agregar a Favoritos
+                                </button>
                             </div>
                         </DialogPanel>
                     </TransitionChild>
@@ -70,9 +74,11 @@
     import { Dialog, DialogPanel, DialogTitle, TransitionChild, TransitionRoot} from "@headlessui/vue";
     import { useModalStore } from "../stores/modal";
     import { useBebidasStore } from "../stores/bebidas";
+    import { useFavoritosStore } from "../stores/favoritos";
 
     const bebidasStore = useBebidasStore();
     const modalStore = useModalStore();
+    const favoritosStore = useFavoritosStore();
 
     const formatearIngredientes = () =>{
         const ingredientesDiv = document.createElement('div');
