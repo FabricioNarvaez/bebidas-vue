@@ -10,6 +10,10 @@ export const useFavoritosStore = defineStore('favoritos', ()=>{
         sincronizarLocalStorage();
     }, {deep: true});
 
+    onMounted(() => {
+        favoritos.value = JSON.parse(localStorage.getItem('favoritos')) ?? [];
+    });
+
     const sincronizarLocalStorage = () => {
         localStorage.setItem('favoritos', JSON.stringify(favoritos.value));
     };
@@ -20,6 +24,7 @@ export const useFavoritosStore = defineStore('favoritos', ()=>{
     };
 
     return {
-        handleFavorito
+        handleFavorito,
+        favoritos
     }
 });
