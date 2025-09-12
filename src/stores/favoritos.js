@@ -1,4 +1,4 @@
-import { ref, watch, onMounted } from "vue";
+import { ref, watch, onMounted, computed } from "vue";
 import { defineStore } from "pinia";
 import { useBebidasStore } from "./bebidas";
 import { useModalStore } from "./modal";
@@ -15,6 +15,8 @@ export const useFavoritosStore = defineStore('favoritos', ()=>{
     onMounted(() => {
         favoritos.value = JSON.parse(localStorage.getItem('favoritos')) ?? [];
     });
+
+    const isFavoritosVacio = computed(() => favoritos.value.length === 0);
 
     const sincronizarLocalStorage = () => {
         localStorage.setItem('favoritos', JSON.stringify(favoritos.value));
@@ -37,6 +39,7 @@ export const useFavoritosStore = defineStore('favoritos', ()=>{
     return {
         handleFavorito,
         existeFavorito,
+        isFavoritosVacio,
         favoritos,
     }
 });
