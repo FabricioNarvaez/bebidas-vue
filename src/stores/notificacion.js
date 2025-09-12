@@ -1,4 +1,4 @@
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import { defineStore } from "pinia";
 
 export const useNotificacionStore = defineStore('notificacion', ()=>{
@@ -9,6 +9,12 @@ export const useNotificacionStore = defineStore('notificacion', ()=>{
     const setShowFalse = () => {
         show.value = false;
     }
+
+    watch(show, () => {
+        setTimeout(() => {
+            setShowFalse();
+        }, 3000);
+    });
 
     return {
         texto,
