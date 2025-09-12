@@ -19,12 +19,21 @@ export const useFavoritosStore = defineStore('favoritos', ()=>{
     };
 
     const handleFavorito = () => {
-        if(favoritos.value.some(fav => fav.idDrink === bebidasStore.receta.idDrink)) return;
+        const existeFavorito = favoritos.value.some(fav => fav.idDrink === bebidasStore.receta.idDrink);
+        if(existeFavorito){
+            favoritos.value = favoritos.value.filter(fav => fav.idDrink !== bebidasStore.receta.idDrink);
+            return;
+        };
         favoritos.value.push(bebidasStore.receta);
     };
 
+    const existeFavorito = (id) => {
+        return favoritos.value.some(fav => fav.idDrink === id);
+    }
+
     return {
         handleFavorito,
-        favoritos
+        existeFavorito,
+        favoritos,
     }
 });
