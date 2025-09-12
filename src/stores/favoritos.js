@@ -1,10 +1,12 @@
 import { ref, watch, onMounted } from "vue";
 import { defineStore } from "pinia";
 import { useBebidasStore } from "./bebidas";
+import { useModalStore } from "./modal";
 
 export const useFavoritosStore = defineStore('favoritos', ()=>{
     const favoritos = ref([]);
     const bebidasStore = useBebidasStore();
+    const modalStore = useModalStore();
 
     watch(favoritos, ()=>{
         sincronizarLocalStorage();
@@ -22,9 +24,10 @@ export const useFavoritosStore = defineStore('favoritos', ()=>{
         const existeFavorito = favoritos.value.some(fav => fav.idDrink === bebidasStore.receta.idDrink);
         if(existeFavorito){
             favoritos.value = favoritos.value.filter(fav => fav.idDrink !== bebidasStore.receta.idDrink);
-            return;
-        };
-        favoritos.value.push(bebidasStore.receta);
+        }else{
+            favoritos.value.push(bebidasStore.receta);
+        }
+        modalStore.toggleModal();
     };
 
     const existeFavorito = (id) => {
