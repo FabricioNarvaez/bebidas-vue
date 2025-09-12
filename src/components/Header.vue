@@ -22,7 +22,7 @@
                         for="ingrediente">
                         Nombre o Ingredientes
                     </label>
-                    <input class="p-3 w-full rounded-lg focus:outline-none" v-model="store.busqueda.nombre"
+                    <input class="p-3 w-full rounded-lg focus:outline-none" v-model="bebidasStore.busqueda.nombre"
                         id="ingrediente" type="text" placeholder="Nombre o Ingrediente: ej. Tequila, Vodka, etc.">
                 </div>
 
@@ -31,10 +31,10 @@
                         for="caletegoria">
                         Categoría
                     </label>
-                    <select class="p-3 w-full rounded-lg focus:outline-none" v-model="store.busqueda.categoria"
+                    <select class="p-3 w-full rounded-lg focus:outline-none" v-model="bebidasStore.busqueda.categoria"
                         id="caletegoria">
                         <option value="">-- Seleccione --</option>
-                        <option v-for="categoria in store.categorias" :key="categoria.strCategory" :value="categoria.strCategory">{{ categoria.strCategory }}</option>
+                        <option v-for="categoria in bebidasStore.categorias" :key="categoria.strCategory" :value="categoria.strCategory">{{ categoria.strCategory }}</option>
                     </select>
                 </div>
 
@@ -50,14 +50,24 @@
     import { computed } from 'vue';
     import { useRoute } from 'vue-router';
     import { useBebidasStore } from '../stores/bebidas';
+    import { useNotificacionStore } from '../stores/notificacion';
     
 
     const route = useRoute();
-    const store = useBebidasStore();
+    const bebidasStore = useBebidasStore();
+    const notificacionStore = useNotificacionStore();
     
     const paginaInicio = computed(() => route.name === 'inicio');
     const handleSubmit = () => {
-        store.obtenerRecetas();
+        if(Object.values(bebidasStore.busqueda).includes('')) {
+            notificacionStore.$patch({
+                texto: 'Todos los campos son obligatorios',
+                error: true,
+                show: true
+            });
+            return;
+        }
+        bebidasStore.obtenerRecetas();
     }
 </script>
 
