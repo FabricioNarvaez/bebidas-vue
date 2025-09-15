@@ -13,6 +13,8 @@
                         :to="{ name: 'inicio'}">Inicio</RouterLink>
                     <RouterLink class="font-bold hover:text-orange-400 transition-colors" active-class="text-orange-500"
                         :to="{ name: 'favoritos'}">Favoritos</RouterLink>
+                    <RouterLink class="font-bold hover:text-orange-400 transition-colors" active-class="text-orange-500"
+                        :to="{ name: 'ia'}">Generar con IA</RouterLink>
                 </nav>
             </div>
 
