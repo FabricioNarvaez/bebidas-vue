@@ -2,7 +2,8 @@
     <h1 class="text-6xl font-extrabold">Generar Receta con IA</h1>
 
     <div class="max-w-4xl mx-auto">
-        <form class="flex flex-col space-y-3 py-10">
+        <form class="flex flex-col space-y-3 py-10"
+            @submit.prevent="handleSubmit()">
             <div class="relative">
                 <input
                     name="prompt"
@@ -40,6 +41,20 @@
 
 <script setup>
     import { useIaStore } from '../stores/ia';
+    import { useNotificacionStore } from '../stores/notificacion';
 
     const iaStore = useIaStore();
+    const notificacionStore = useNotificacionStore();
+
+    const handleSubmit = () => {
+        if(iaStore.prompt.trim() === '') {
+            notificacionStore.$patch({
+                texto: 'La buesqueda no puede estar vacía',
+                show: true,
+                error: true
+            });
+            return;
+        }
+        iaStore.generarReceta();
+    }
 </script>
