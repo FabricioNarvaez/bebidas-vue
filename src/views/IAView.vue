@@ -37,6 +37,7 @@
             </div>
         </form>
 
+        <p v-if="iaStore.escribiendo">Generando...</p>
         <div class="py-10 whitespace-pre-wrap">
             {{ iaStore.respuesta }}
         </div>
