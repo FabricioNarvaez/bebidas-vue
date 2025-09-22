@@ -16,6 +16,8 @@
                     type="submit"
                     aria-label="Enviar"
                     class="cursor-pointer absolute top-1/2 right-5 transform -translate-x-1/2 -translate-y-1/2"
+                    :class="{ 'cursor-not-allowed opacity-50': iaStore.escribiendo }"
+                    :disabled="iaStore.escribiendo"
                 >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
