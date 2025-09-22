@@ -35,7 +35,9 @@
             </div>
         </form>
 
-        <div class="py-10 whitespace-pre-wrap"></div>
+        <div class="py-10 whitespace-pre-wrap">
+            {{ iaStore.respuesta }}
+        </div>
     </div>
 </template>
 
